@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,14 +47,66 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ayarlar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ayarlar.Designer.cs">
+      <DependentUpon>Ayarlar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EgitimDuzenle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EgitimDuzenle.Designer.cs">
+      <DependentUpon>EgitimDuzenle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EgitimEkle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EgitimEkle.Designer.cs">
+      <DependentUpon>EgitimEkle.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Hakkinda.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hakkinda.Designer.cs">
+      <DependentUpon>Hakkinda.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBoxManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SplashScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SplashScreen.Designer.cs">
+      <DependentUpon>SplashScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VeritabaniSec.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VeritabaniSec.Designer.cs">
+      <DependentUpon>VeritabaniSec.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Ayarlar.resx">
+      <DependentUpon>Ayarlar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EgitimDuzenle.resx">
+      <DependentUpon>EgitimDuzenle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EgitimEkle.resx">
+      <DependentUpon>EgitimEkle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hakkinda.resx">
+      <DependentUpon>Hakkinda.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -62,7 +115,16 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="SplashScreen.resx">
+      <DependentUpon>SplashScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VeritabaniSec.resx">
+      <DependentUpon>VeritabaniSec.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Font\gilroy.otf" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -75,6 +137,133 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Afyon_Kocatepe_Üniversitesi_logo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Afyon_Kocatepe_Üniversitesi_logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\akbank.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow-left-icon %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow-refresh-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow-right-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close-icon1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cog-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\copy_24px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\error-button-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\find-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gaiblogo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Gear-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Get-Info-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\immib.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\info-button-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iso-akademi-01-27539.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ISO-logo_1280-146.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Logo1 - Kopya.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\microfon.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paste_24px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pencil-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printer-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\resultset-next-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\resultset-previous-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save-icon1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sdf.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\solidworks.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vga857.ttf" />
+    <None Include="Resources\warning-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\01-Warning-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\02-Recycle-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\04-Save-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\14-Delete-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\15-Tick-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\17-Paste-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\29-House-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\box.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Logo1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
