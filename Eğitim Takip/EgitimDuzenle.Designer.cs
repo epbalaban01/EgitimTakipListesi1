@@ -52,7 +52,7 @@
             this.checkBox2.AutoSize = true;
             this.checkBox2.Checked = true;
             this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox2.Location = new System.Drawing.Point(78, 250);
+            this.checkBox2.Location = new System.Drawing.Point(76, 260);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(32, 17);
             this.checkBox2.TabIndex = 176;
@@ -63,7 +63,7 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(20, 250);
+            this.checkBox1.Location = new System.Drawing.Point(18, 260);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(32, 17);
             this.checkBox1.TabIndex = 177;
@@ -73,8 +73,10 @@
             // 
             // btn_guncelle
             // 
+            this.btn_guncelle.Cursor = System.Windows.Forms.Cursors.No;
             this.btn_guncelle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_guncelle.Location = new System.Drawing.Point(198, 212);
+            this.btn_guncelle.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btn_guncelle.Location = new System.Drawing.Point(190, 223);
             this.btn_guncelle.Name = "btn_guncelle";
             this.btn_guncelle.Size = new System.Drawing.Size(100, 42);
             this.btn_guncelle.TabIndex = 7;
@@ -87,7 +89,7 @@
             this.label6.BackColor = System.Drawing.Color.Gray;
             this.label6.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.label6.Location = new System.Drawing.Point(32, 224);
+            this.label6.Location = new System.Drawing.Point(30, 234);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(76, 20);
             this.label6.TabIndex = 0;
@@ -97,7 +99,7 @@
             // 
             this.lblid.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.lblid.ForeColor = System.Drawing.Color.Black;
-            this.lblid.Location = new System.Drawing.Point(34, 191);
+            this.lblid.Location = new System.Drawing.Point(26, 202);
             this.lblid.Name = "lblid";
             this.lblid.Size = new System.Drawing.Size(74, 26);
             this.lblid.TabIndex = 173;
@@ -107,6 +109,7 @@
             // 
             // comboboxSaat
             // 
+            this.comboboxSaat.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.comboboxSaat.FormattingEnabled = true;
             this.comboboxSaat.Items.AddRange(new object[] {
             "09:30",
@@ -114,9 +117,9 @@
             "10:30",
             "14:00",
             "20:00"});
-            this.comboboxSaat.Location = new System.Drawing.Point(154, 174);
+            this.comboboxSaat.Location = new System.Drawing.Point(146, 184);
             this.comboboxSaat.Name = "comboboxSaat";
-            this.comboboxSaat.Size = new System.Drawing.Size(177, 21);
+            this.comboboxSaat.Size = new System.Drawing.Size(177, 23);
             this.comboboxSaat.TabIndex = 6;
             // 
             // label10
@@ -124,7 +127,7 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label10.ForeColor = System.Drawing.Color.Black;
-            this.label10.Location = new System.Drawing.Point(34, 176);
+            this.label10.Location = new System.Drawing.Point(26, 187);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(36, 15);
             this.label10.TabIndex = 167;
@@ -135,7 +138,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(34, 147);
+            this.label5.Location = new System.Drawing.Point(26, 158);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(69, 15);
             this.label5.TabIndex = 168;
@@ -146,7 +149,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(34, 116);
+            this.label4.Location = new System.Drawing.Point(26, 127);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(72, 15);
             this.label4.TabIndex = 169;
@@ -157,7 +160,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(34, 85);
+            this.label3.Location = new System.Drawing.Point(26, 96);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(56, 15);
             this.label3.TabIndex = 170;
@@ -168,7 +171,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(34, 54);
+            this.label2.Location = new System.Drawing.Point(26, 65);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(90, 15);
             this.label2.TabIndex = 171;
@@ -179,7 +182,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(34, 23);
+            this.label1.Location = new System.Drawing.Point(26, 34);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(66, 15);
             this.label1.TabIndex = 172;
@@ -188,7 +191,7 @@
             // textboxZoomLink
             // 
             this.textboxZoomLink.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.textboxZoomLink.Location = new System.Drawing.Point(154, 144);
+            this.textboxZoomLink.Location = new System.Drawing.Point(146, 155);
             this.textboxZoomLink.Name = "textboxZoomLink";
             this.textboxZoomLink.Size = new System.Drawing.Size(177, 21);
             this.textboxZoomLink.TabIndex = 5;
@@ -196,7 +199,7 @@
             // textboxZoomSifre
             // 
             this.textboxZoomSifre.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.textboxZoomSifre.Location = new System.Drawing.Point(154, 113);
+            this.textboxZoomSifre.Location = new System.Drawing.Point(146, 124);
             this.textboxZoomSifre.Name = "textboxZoomSifre";
             this.textboxZoomSifre.Size = new System.Drawing.Size(177, 21);
             this.textboxZoomSifre.TabIndex = 4;
@@ -204,7 +207,7 @@
             // textboxZoomID
             // 
             this.textboxZoomID.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.textboxZoomID.Location = new System.Drawing.Point(154, 82);
+            this.textboxZoomID.Location = new System.Drawing.Point(146, 93);
             this.textboxZoomID.Name = "textboxZoomID";
             this.textboxZoomID.Size = new System.Drawing.Size(177, 21);
             this.textboxZoomID.TabIndex = 3;
@@ -212,7 +215,7 @@
             // textboxEgitimAdi
             // 
             this.textboxEgitimAdi.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.textboxEgitimAdi.Location = new System.Drawing.Point(154, 20);
+            this.textboxEgitimAdi.Location = new System.Drawing.Point(146, 31);
             this.textboxEgitimAdi.Name = "textboxEgitimAdi";
             this.textboxEgitimAdi.Size = new System.Drawing.Size(177, 21);
             this.textboxEgitimAdi.TabIndex = 1;
@@ -221,7 +224,7 @@
             // 
             this.textboxEgitimZamani.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.textboxEgitimZamani.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.textboxEgitimZamani.Location = new System.Drawing.Point(154, 49);
+            this.textboxEgitimZamani.Location = new System.Drawing.Point(146, 60);
             this.textboxEgitimZamani.Name = "textboxEgitimZamani";
             this.textboxEgitimZamani.Size = new System.Drawing.Size(177, 21);
             this.textboxEgitimZamani.TabIndex = 2;

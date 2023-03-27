@@ -16,8 +16,8 @@ namespace Eğitim_Takip
     {
 
         public string a, b, c, d, f, g, h, j;
-        SqlConnection baglanti = new SqlConnection("Data Source=IT-EYUP-LP\\SQLEXPRESS;Initial Catalog=veritabani;MultipleActiveResultSets=True;Integrated Security=True");
 
+        SqlConnection baglanti = new SqlConnection(string.Format("Server={0};Database={1};Uid={2};Pwd={3};MultipleActiveResultSets=True;Integrated Security=True", svsettings.Default.server, svsettings.Default.database, svsettings.Default.username, svsettings.Default.password));
         public EgitimDuzenle()
         {
             InitializeComponent();

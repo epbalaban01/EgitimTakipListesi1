@@ -49,6 +49,7 @@
             // 
             // comboboxSaat
             // 
+            this.comboboxSaat.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.comboboxSaat.FormattingEnabled = true;
             this.comboboxSaat.Items.AddRange(new object[] {
             "09:30",
@@ -56,9 +57,9 @@
             "10:30",
             "14:00",
             "20:00"});
-            this.comboboxSaat.Location = new System.Drawing.Point(146, 185);
+            this.comboboxSaat.Location = new System.Drawing.Point(146, 184);
             this.comboboxSaat.Name = "comboboxSaat";
-            this.comboboxSaat.Size = new System.Drawing.Size(177, 21);
+            this.comboboxSaat.Size = new System.Drawing.Size(177, 23);
             this.comboboxSaat.TabIndex = 149;
             // 
             // label10
@@ -174,7 +175,7 @@
             this.label6.BackColor = System.Drawing.Color.Gray;
             this.label6.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.label6.Location = new System.Drawing.Point(24, 235);
+            this.label6.Location = new System.Drawing.Point(24, 239);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(76, 20);
             this.label6.TabIndex = 157;
@@ -184,7 +185,7 @@
             // 
             this.lblid.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.lblid.ForeColor = System.Drawing.Color.Black;
-            this.lblid.Location = new System.Drawing.Point(26, 202);
+            this.lblid.Location = new System.Drawing.Point(26, 206);
             this.lblid.Name = "lblid";
             this.lblid.Size = new System.Drawing.Size(74, 26);
             this.lblid.TabIndex = 156;
@@ -195,11 +196,12 @@
             // btn_kaydet
             // 
             this.btn_kaydet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_kaydet.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.btn_kaydet.Location = new System.Drawing.Point(190, 223);
             this.btn_kaydet.Name = "btn_kaydet";
             this.btn_kaydet.Size = new System.Drawing.Size(100, 42);
             this.btn_kaydet.TabIndex = 158;
-            this.btn_kaydet.Text = "EKLE";
+            this.btn_kaydet.Text = "Ekle";
             this.btn_kaydet.UseVisualStyleBackColor = true;
             this.btn_kaydet.Click += new System.EventHandler(this.btn_kaydet_Click);
             // 
@@ -208,7 +210,7 @@
             this.checkBox2.AutoSize = true;
             this.checkBox2.Checked = true;
             this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox2.Location = new System.Drawing.Point(70, 261);
+            this.checkBox2.Location = new System.Drawing.Point(70, 265);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(32, 17);
             this.checkBox2.TabIndex = 159;
@@ -219,7 +221,7 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(12, 261);
+            this.checkBox1.Location = new System.Drawing.Point(12, 265);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(32, 17);
             this.checkBox1.TabIndex = 160;

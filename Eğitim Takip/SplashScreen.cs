@@ -47,7 +47,7 @@ namespace Eğitim_Takip
             else
             {
                 timer1.Stop();
-                Form1 yeni = new Form1();
+                GirisYap yeni = new GirisYap();
                 yeni.Show();
                 this.Hide();
             }

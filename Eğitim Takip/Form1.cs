@@ -12,14 +12,25 @@ using System.IO;
 using System.Drawing.Text;
 using System.Runtime.InteropServices;
 using System.Data.SqlClient;
+using System.Security.Cryptography;
+using System.Text.RegularExpressions;
 
 
 namespace Eğitim_Takip
 {
     public partial class Form1 : Form
     {
+        //string server2 = string.Format("Data Source={0};Initial Catalog={1};User ID={2};Password{3};", svsettings.Default.server
+        //    , svsettings.Default.database, svsettings.Default.username, svsettings.Default.password);
 
-        SqlConnection baglanti = new SqlConnection("Data Source=IT-EYUP-LP\\SQLEXPRESS;Initial Catalog=veritabani;MultipleActiveResultSets=True;Integrated Security=True");
+
+        SqlConnection baglanti = new SqlConnection(string.Format("Server={0};Database={1};Uid={2};Pwd={3};MultipleActiveResultSets=True;Integrated Security=True", svsettings.Default.server
+            , svsettings.Default.database, svsettings.Default.username, svsettings.Default.password));
+        //SqlConnection baglanti = new SqlConnection("Server=" + svsettings.Default.server + ";Database=" + svsettings.Default.database + ";Uid=" + svsettings.Default.username + ";Pwd=" + svsettings.Default.password + ";");
+
+
+       
+        // SqlConnection baglanti = new SqlConnection("Data Source=IT-EYUP-LP\\SQLEXPRESS;Initial Catalog=veritabani;MultipleActiveResultSets=True;Integrated Security=True");
         OleDbConnection baglanti1 = new OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=veritabani.mdb");
 
         SqlDataAdapter adapter = new SqlDataAdapter();
@@ -31,20 +42,36 @@ namespace Eğitim_Takip
 
         SqlCommand komut = new SqlCommand();
 
+        //private SqlConnection baglantiYap()
+        //{
+        //    SqlConnection baglanti = new SqlConnection("Server=" + svsettings.Default.server + ";Database=" + svsettings.Default.database + ";Uid=" + svsettings.Default.username + ";Pwd=" + svsettings.Default.database + ";");
+        //    if (baglanti.State == ConnectionState.Closed)
+        //    {
+        //        baglanti.Open();
+        //    }
+        //    return baglanti;
+        //}
+
+
+
 
         public Form1()
         {
             InitializeComponent();
 
+
+
         }
 
+        
         public void Form1_Load(object sender, EventArgs e)
         {
-            PrivateFontCollection pfc = new PrivateFontCollection();
-            pfc.AddFontFile(Application.StartupPath + @"\Font\gilroy.otf");
-            label15.Font = new Font(pfc.Families[0], 24, FontStyle.Italic);
-            lblsaat.Font = new Font(pfc.Families[0], 22, FontStyle.Regular);
-            lbltarih.Font = new Font(pfc.Families[0], 12, FontStyle.Regular);
+            
+            //PrivateFontCollection pfc = new PrivateFontCollection();
+            //pfc.AddFontFile(Application.StartupPath + @"\Font\gilroy.otf");
+            //label15.Font = new Font(pfc.Families[0], 24, FontStyle.Italic);
+            //lblsaat.Font = new Font(pfc.Families[0], 22, FontStyle.Regular);
+            //lbltarih.Font = new Font(pfc.Families[0], 12, FontStyle.Regular);
 
 
             timer3.Start();
@@ -60,9 +87,23 @@ namespace Eğitim_Takip
             timer4.Start();
             timer5.Start();
 
+            //using (SqlDataReader oku1 = komut.ExecuteReader())
+            //{
+            //    oku1.Close();
+            //}
 
-           
         }
+
+      
+
+
+        private void Form1_Shown(object sender, EventArgs e)
+        {
+            
+        }
+
+
+
 
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
@@ -70,11 +111,18 @@ namespace Eğitim_Takip
             Application.Exit();
         }
 
+
+       
+
+
         #region Güncelle
 
         public void bos()
         {
-            baglanti.Open();
+           baglanti.Open();
+       
+
+            
             SqlDataAdapter adtr = new SqlDataAdapter("select *from bos", baglanti);
             adtr.Fill(tablo);
             dataGridView1.DataSource = tablo;
@@ -98,11 +146,11 @@ namespace Eğitim_Takip
 
         public void guncelle()
         {
-
+           baglanti.Open();
 
 
             //SQL BAĞLANTISI
-            baglanti.Open();
+
             SqlDataAdapter adtr = new SqlDataAdapter("select *from gaib", baglanti);
             adtr.Fill(tablo);
             dataGridView1.DataSource = tablo;
@@ -135,6 +183,7 @@ namespace Eğitim_Takip
             //
 
 
+          
             // EKLENEN LİSTE SAYISI
             SqlCommand adtr4 = new SqlCommand("SELECT  count(id) as toplamkayit from gaib", baglanti);
             oku1 = adtr4.ExecuteReader();
@@ -144,6 +193,7 @@ namespace Eğitim_Takip
             }
             //
             adtr4.Dispose();
+            oku1.Close();
 
 
             baglanti.Close();
@@ -152,7 +202,10 @@ namespace Eğitim_Takip
 
         public void guncelle1()
         {
-            baglanti.Open();
+           baglanti.Open();
+
+            //SQL BAĞLANTISI
+
             SqlDataAdapter adtr = new SqlDataAdapter("select *from immib", baglanti);
             adtr.Fill(tablo);
 
@@ -198,7 +251,7 @@ namespace Eğitim_Takip
 
         public void guncelle2()
         {
-            baglanti.Open();
+           baglanti.Open();
             SqlDataAdapter adtr = new SqlDataAdapter("select *from iso", baglanti);
             adtr.Fill(tablo);
             dataGridView1.DataSource = tablo;
@@ -240,7 +293,10 @@ namespace Eğitim_Takip
 
         public void guncelle3()
         {
-            baglanti.Open();
+           baglanti.Open();
+
+            //SQL BAĞLANTISI
+
             SqlDataAdapter adtr = new SqlDataAdapter("select *from akbank", baglanti);
             adtr.Fill(tablo);
             dataGridView1.DataSource = tablo;
@@ -282,7 +338,10 @@ namespace Eğitim_Takip
 
         public void guncelle4()
         {
-            baglanti.Open();
+           
+
+            //SQL BAĞLANTISI
+           baglanti.Open();
             SqlDataAdapter adtr = new SqlDataAdapter("select *from microfon", baglanti);
             adtr.Fill(tablo);
             dataGridView1.DataSource = tablo;
@@ -324,7 +383,10 @@ namespace Eğitim_Takip
 
         public void guncelle5()
         {
-            baglanti.Open();
+          
+
+            //SQL BAĞLANTISI
+           baglanti.Open();
             SqlDataAdapter adtr = new SqlDataAdapter("select * from solidworks", baglanti);
             adtr.Fill(tablo);
             dataGridView1.DataSource = tablo;
@@ -404,7 +466,10 @@ namespace Eğitim_Takip
             {
                 if (MessageBox.Show("Seçili Ögeyi Silmek İstiyor Musunuz ?", "Dikkat", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    baglanti.Open();
+                   
+
+                    //SQL BAĞLANTISI
+                   baglanti.Open();
                     SqlCommand komut2 = new SqlCommand("DELETE FROM gaib WHERE egitim_adi=@egitim_adi", baglanti);
                     komut2.Parameters.AddWithValue("@egitim_adi", dataGridView1.CurrentRow.Cells[2].Value);
                     komut2.ExecuteNonQuery();
@@ -426,7 +491,10 @@ namespace Eğitim_Takip
             {
                 if (MessageBox.Show("Seçili Ögeyi Silmek İstiyor Musunuz ?", "Dikkat", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    baglanti.Open();
+
+
+                    //SQL BAĞLANTISI
+                   baglanti.Open();
                     SqlCommand komut2 = new SqlCommand("DELETE FROM immib WHERE egitim_adi=@egitim_adi", baglanti);
                     komut2.Parameters.AddWithValue("@egitim_adi", dataGridView1.CurrentRow.Cells[2].Value);
                     komut2.ExecuteNonQuery();
@@ -447,7 +515,9 @@ namespace Eğitim_Takip
             {
                 if (MessageBox.Show("Seçili Ögeyi Silmek İstiyor Musunuz ?", "Dikkat", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    baglanti.Open();
+
+                    //SQL BAĞLANTISI
+                   baglanti.Open();
                     SqlCommand komut2 = new SqlCommand("DELETE FROM iso WHERE egitim_adi=@egitim_adi", baglanti);
                     komut2.Parameters.AddWithValue("@egitim_adi", dataGridView1.CurrentRow.Cells[2].Value);
                     komut2.ExecuteNonQuery();
@@ -469,7 +539,8 @@ namespace Eğitim_Takip
             {
                 if (MessageBox.Show("Seçili Ögeyi Silmek İstiyor Musunuz ?", "Dikkat", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    baglanti.Open();
+                    //SQL BAĞLANTISI
+                   baglanti.Open();
                     SqlCommand komut2 = new SqlCommand("DELETE FROM akbank WHERE egitim_adi=@egitim_adi", baglanti);
                     komut2.Parameters.AddWithValue("@egitim_adi", dataGridView1.CurrentRow.Cells[2].Value);
                     komut2.ExecuteNonQuery();
@@ -490,7 +561,8 @@ namespace Eğitim_Takip
             {
                 if (MessageBox.Show("Seçili Ögeyi Silmek İstiyor Musunuz ?", "Dikkat", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    baglanti.Open();
+                    //SQL BAĞLANTISI
+                   baglanti.Open();
                     SqlCommand komut2 = new SqlCommand("DELETE FROM microfon WHERE egitim_adi=@egitim_adi", baglanti);
                     komut2.Parameters.AddWithValue("@egitim_adi", dataGridView1.CurrentRow.Cells[2].Value);
                     komut2.ExecuteNonQuery();
@@ -511,7 +583,8 @@ namespace Eğitim_Takip
             {
                 if (MessageBox.Show("Seçili Ögeyi Silmek İstiyor Musunuz ?", "Dikkat", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    baglanti.Open();
+                    //SQL BAĞLANTISI
+                   baglanti.Open();
                     SqlCommand komut2 = new SqlCommand("DELETE FROM solidworks WHERE egitim_adi=@egitim_adi", baglanti);
                     komut2.Parameters.AddWithValue("@egitim_adi", dataGridView1.CurrentRow.Cells[2].Value);
                     komut2.ExecuteNonQuery();
@@ -887,7 +960,9 @@ namespace Eğitim_Takip
                             try
                             {
                                 /* SQL SERVER KAYDETME */
-                                baglanti.Open();
+
+                                //SQL BAĞLANTISI
+                               baglanti.Open();
                                 SqlCommand komut2 = new SqlCommand("DELETE FROM gaib WHERE egitim_adi=@egitim_adi", baglanti);
                                 komut2.Parameters.AddWithValue("@egitim_adi", dataGridView1.CurrentRow.Cells[2].Value);
                                 komut2.ExecuteNonQuery();
@@ -980,7 +1055,9 @@ namespace Eğitim_Takip
                         {
                             try
                             {
-                                baglanti.Open();
+
+                                //SQL BAĞLANTISI
+                               baglanti.Open();
                                 SqlCommand komut2 = new SqlCommand("DELETE FROM immib WHERE egitim_adi=@egitim_adi", baglanti);
                                 komut2.Parameters.AddWithValue("@egitim_adi", dataGridView1.CurrentRow.Cells[2].Value);
                                 komut2.ExecuteNonQuery();
@@ -1030,7 +1107,9 @@ namespace Eğitim_Takip
                         {
                             try
                             {
-                                baglanti.Open();
+
+                                //SQL BAĞLANTISI
+                               baglanti.Open();
                                 SqlCommand komut2 = new SqlCommand("DELETE FROM iso WHERE egitim_adi=@egitim_adi", baglanti);
                                 komut2.Parameters.AddWithValue("@egitim_adi", dataGridView1.CurrentRow.Cells[2].Value);
                                 komut2.ExecuteNonQuery();
@@ -1081,7 +1160,9 @@ namespace Eğitim_Takip
                         {
                             try
                             {
-                                baglanti.Open();
+
+                                //SQL BAĞLANTISI
+                               baglanti.Open();
                                 SqlCommand komut2 = new SqlCommand("DELETE FROM akbank WHERE egitim_adi=@egitim_adi", baglanti);
                                 komut2.Parameters.AddWithValue("@egitim_adi", dataGridView1.CurrentRow.Cells[2].Value);
                                 komut2.ExecuteNonQuery();
@@ -1131,7 +1212,9 @@ namespace Eğitim_Takip
                         {
                             try
                             {
-                                baglanti.Open();
+
+                                //SQL BAĞLANTISI
+                               baglanti.Open();
                                 SqlCommand komut2 = new SqlCommand("DELETE FROM microfon WHERE egitim_adi=@egitim_adi", baglanti);
                                 komut2.Parameters.AddWithValue("@egitim_adi", dataGridView1.CurrentRow.Cells[2].Value);
                                 komut2.ExecuteNonQuery();
@@ -1181,7 +1264,9 @@ namespace Eğitim_Takip
                         {
                             try
                             {
-                                baglanti.Open();
+
+                                //SQL BAĞLANTISI
+                               baglanti.Open();
                                 SqlCommand komut2 = new SqlCommand("DELETE FROM solidworks WHERE egitim_adi=@egitim_adi", baglanti);
                                 komut2.Parameters.AddWithValue("@egitim_adi", dataGridView1.CurrentRow.Cells[2].Value);
                                 komut2.ExecuteNonQuery();
@@ -1263,6 +1348,7 @@ namespace Eğitim_Takip
         string immibvakit, immibkalanvakit, immibkalanvakit1, immibkalanvakit2;
         string isovakit, isokalanvakit, isokalanvakit1, isokalanvakit2;
 
+    
 
         string microfonvakit, microfonkalanvakit, microfonkalanvakit1, microfonkalanvakit2;
         string akbankvakit, akbankkalanvakit, akbankkalanvakit1, akbankkalanvakit2;

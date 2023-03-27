@@ -14,10 +14,10 @@ namespace Eğitim_Takip
 {
     public partial class VeritabaniSec : Form
     {
-        SqlConnection baglanti = new SqlConnection("Data Source=IT-EYUP-LP\\SQLEXPRESS;Initial Catalog=veritabani;MultipleActiveResultSets=True;Integrated Security=True");
+        SqlConnection baglanti = new SqlConnection(string.Format("Server={0};Database={1};Uid={2};Pwd={3};MultipleActiveResultSets=True;Integrated Security=True", svsettings.Default.server, svsettings.Default.database, svsettings.Default.username, svsettings.Default.password));
         OleDbConnection baglanti1 = new OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=veritabani.mdb");
 
-        SqlConnection baglanti2 = new SqlConnection("Data Source=IT-EYUP-LP\\SQLEXPRESS;Initial Catalog=veritabani;MultipleActiveResultSets=True;Integrated Security=True");
+        SqlConnection baglanti2 = new SqlConnection(string.Format("Server={0};Database={1};Uid={2};Pwd={3};MultipleActiveResultSets=True;Integrated Security=True", svsettings.Default.server, svsettings.Default.database, svsettings.Default.username, svsettings.Default.password));
 
         public string a, b, c, d, f, g, h, j;
 
@@ -148,23 +148,528 @@ namespace Eğitim_Takip
                     }
                     else if(label6.Text == "İMMİB Akademi")
                     {
+                        try
+                        {
+                            if (sqlsecili.Checked == true)
+                            {
+                                baglanti2.Open();
+                                SqlCommand tekrar = new SqlCommand("select count(*) from immib where egitim_adi='" + a + "'", baglanti2);
+                                int sonuc = (int)tekrar.ExecuteScalar();
+                                if (sonuc == 0)
+                                {
+                                    /*SQL'A KAYDET */
+                                    baglanti.Open();
+                                    SqlCommand kayit = new SqlCommand("insert into immib ([egitim_adi], [egitim_zamani],[zoom_id],[zoom_sifre],[zoom_link],[saat],[katildi_mi]) values (@egitim_adi, @egitim_zamani, @zoom_id, @zoom_sifre, @zoom_link, @saat, @katildi_mi)", baglanti);
+                                    kayit.Parameters.AddWithValue("@egitim_adi", a);
+                                    kayit.Parameters.AddWithValue("@egitim_zamani", b);
+                                    kayit.Parameters.AddWithValue("@zoom_id", c);
+                                    kayit.Parameters.AddWithValue("@zoom_sifre", d);
+                                    kayit.Parameters.AddWithValue("@zoom_link", f);
+                                    kayit.Parameters.AddWithValue("@saat", g);
+                                    kayit.Parameters.AddWithValue("@katildi_mi", h);
+                                    kayit.ExecuteNonQuery();
+                                    MessageBox.Show("Yeni eğitim başarıyla eklendi!", "Eğitim Ekle", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    kayit.Dispose();
+                                    baglanti.Close();
+                                    /*SQL'A KAYDET */
+                                }
+                                if (sonuc > 0)
+                                {
+                                    MessageBox.Show("Zaten bu kayıt veritabanın da mevcut", "Veritabanı Kaydı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                }
+                                baglanti2.Close();
+                                this.Close();
+                            }
+                            else if (accesssecili.Checked == true)
+                            {
+                                /*VERİTABANINA KAYDET */
+                                baglanti1.Open();
+                                OleDbCommand kayit1 = new OleDbCommand("insert into immib ([egitim_adi], [egitim_zamani],[zoom_id],[zoom_sifre],[zoom_link],[saat]) values (@egitim_adi, @egitim_zamani, @zoom_id, @zoom_sifre, @zoom_link, @saat)", baglanti1);
+                                kayit1.Parameters.AddWithValue("@egitim_adi", a);
+                                kayit1.Parameters.AddWithValue("@egitim_zamani", b);
+                                kayit1.Parameters.AddWithValue("@zoom_id", c);
+                                kayit1.Parameters.AddWithValue("@zoom_sifre", d);
+                                kayit1.Parameters.AddWithValue("@zoom_link", f);
+                                kayit1.Parameters.AddWithValue("@saat", g);
+                                kayit1.ExecuteNonQuery();
+                                MessageBox.Show("Yeni eğitim başarıyla eklendi!", "Access Veritabanı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                kayit1.Dispose();
+                                baglanti1.Close();
+                                /*VERİTABANINA KAYDET*/
 
+                                this.Close();
+                            }
+                            else if (hepsisecili.Checked == true)
+                            {
+
+                                /*SQL'A KAYDET */
+                                baglanti.Open();
+                                SqlCommand kayit = new SqlCommand("insert into immib ([egitim_adi], [egitim_zamani],[zoom_id],[zoom_sifre],[zoom_link],[saat],[katildi_mi]) values (@egitim_adi, @egitim_zamani, @zoom_id, @zoom_sifre, @zoom_link, @saat, @katildi_mi)", baglanti);
+                                kayit.Parameters.AddWithValue("@egitim_adi", a);
+                                kayit.Parameters.AddWithValue("@egitim_zamani", b);
+                                kayit.Parameters.AddWithValue("@zoom_id", c);
+                                kayit.Parameters.AddWithValue("@zoom_sifre", d);
+                                kayit.Parameters.AddWithValue("@zoom_link", f);
+                                kayit.Parameters.AddWithValue("@saat", g);
+                                kayit.Parameters.AddWithValue("@katildi_mi", h);
+                                kayit.ExecuteNonQuery();
+                                MessageBox.Show("Yeni eğitim başarıyla eklendi!", "Eğitim Ekle", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                kayit.Dispose();
+                                baglanti.Close();
+                                /*SQL'A KAYDET */
+
+                                /////////****************************************************************************////////
+
+                                /*VERİTABANINA KAYDET */
+                                baglanti1.Open();
+                                OleDbCommand kayit1 = new OleDbCommand("insert into immib ([egitim_adi], [egitim_zamani],[zoom_id],[zoom_sifre],[zoom_link],[saat]) values (@egitim_adi, @egitim_zamani, @zoom_id, @zoom_sifre, @zoom_link, @saat)", baglanti1);
+                                kayit1.Parameters.AddWithValue("@egitim_adi", a);
+                                kayit1.Parameters.AddWithValue("@egitim_zamani", b);
+                                kayit1.Parameters.AddWithValue("@zoom_id", c);
+                                kayit1.Parameters.AddWithValue("@zoom_sifre", d);
+                                kayit1.Parameters.AddWithValue("@zoom_link", f);
+                                kayit1.Parameters.AddWithValue("@saat", g);
+                                kayit1.ExecuteNonQuery();
+                                MessageBox.Show("Yeni eğitim başarıyla eklendi!", "Access Veritabanı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                kayit1.Dispose();
+                                baglanti1.Close();
+                                /*VERİTABANINA KAYDET*/
+
+                                this.Close();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Lütfen birini seçiniz!!", "Veritabanı Seçiniz", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                        }
+                        catch (InvalidCastException ex)
+                        {
+                            MessageBox.Show(ex.Message, "ERROR12", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+
+                        Form1 f1 = (Form1)Application.OpenForms["Form1"];
+                        f1.tablo.Clear();
+                        f1.guncelle1();
                     }
                     else if (label6.Text == "ISO Akademi")
                     {
+                        try
+                        {
+                            if (sqlsecili.Checked == true)
+                            {
+                                baglanti2.Open();
+                                SqlCommand tekrar = new SqlCommand("select count(*) from iso where egitim_adi='" + a + "'", baglanti2);
+                                int sonuc = (int)tekrar.ExecuteScalar();
+                                if (sonuc == 0)
+                                {
+                                    /*SQL'A KAYDET */
+                                    baglanti.Open();
+                                    SqlCommand kayit = new SqlCommand("insert into iso ([egitim_adi], [egitim_zamani],[zoom_id],[zoom_sifre],[zoom_link],[saat],[katildi_mi]) values (@egitim_adi, @egitim_zamani, @zoom_id, @zoom_sifre, @zoom_link, @saat, @katildi_mi)", baglanti);
+                                    kayit.Parameters.AddWithValue("@egitim_adi", a);
+                                    kayit.Parameters.AddWithValue("@egitim_zamani", b);
+                                    kayit.Parameters.AddWithValue("@zoom_id", c);
+                                    kayit.Parameters.AddWithValue("@zoom_sifre", d);
+                                    kayit.Parameters.AddWithValue("@zoom_link", f);
+                                    kayit.Parameters.AddWithValue("@saat", g);
+                                    kayit.Parameters.AddWithValue("@katildi_mi", h);
+                                    kayit.ExecuteNonQuery();
+                                    MessageBox.Show("Yeni eğitim başarıyla eklendi!", "Eğitim Ekle", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    kayit.Dispose();
+                                    baglanti.Close();
+                                    /*SQL'A KAYDET */
+                                }
+                                if (sonuc > 0)
+                                {
+                                    MessageBox.Show("Zaten bu kayıt veritabanın da mevcut", "Veritabanı Kaydı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                }
+                                baglanti2.Close();
+                                this.Close();
+                            }
+                            else if (accesssecili.Checked == true)
+                            {
+                                /*VERİTABANINA KAYDET */
+                                baglanti1.Open();
+                                OleDbCommand kayit1 = new OleDbCommand("insert into iso ([egitim_adi], [egitim_zamani],[zoom_id],[zoom_sifre],[zoom_link],[saat]) values (@egitim_adi, @egitim_zamani, @zoom_id, @zoom_sifre, @zoom_link, @saat)", baglanti1);
+                                kayit1.Parameters.AddWithValue("@egitim_adi", a);
+                                kayit1.Parameters.AddWithValue("@egitim_zamani", b);
+                                kayit1.Parameters.AddWithValue("@zoom_id", c);
+                                kayit1.Parameters.AddWithValue("@zoom_sifre", d);
+                                kayit1.Parameters.AddWithValue("@zoom_link", f);
+                                kayit1.Parameters.AddWithValue("@saat", g);
+                                kayit1.ExecuteNonQuery();
+                                MessageBox.Show("Yeni eğitim başarıyla eklendi!", "Access Veritabanı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                kayit1.Dispose();
+                                baglanti1.Close();
+                                /*VERİTABANINA KAYDET*/
 
+                                this.Close();
+                            }
+                            else if (hepsisecili.Checked == true)
+                            {
+
+                                /*SQL'A KAYDET */
+                                baglanti.Open();
+                                SqlCommand kayit = new SqlCommand("insert into iso ([egitim_adi], [egitim_zamani],[zoom_id],[zoom_sifre],[zoom_link],[saat],[katildi_mi]) values (@egitim_adi, @egitim_zamani, @zoom_id, @zoom_sifre, @zoom_link, @saat, @katildi_mi)", baglanti);
+                                kayit.Parameters.AddWithValue("@egitim_adi", a);
+                                kayit.Parameters.AddWithValue("@egitim_zamani", b);
+                                kayit.Parameters.AddWithValue("@zoom_id", c);
+                                kayit.Parameters.AddWithValue("@zoom_sifre", d);
+                                kayit.Parameters.AddWithValue("@zoom_link", f);
+                                kayit.Parameters.AddWithValue("@saat", g);
+                                kayit.Parameters.AddWithValue("@katildi_mi", h);
+                                kayit.ExecuteNonQuery();
+                                MessageBox.Show("Yeni eğitim başarıyla eklendi!", "Eğitim Ekle", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                kayit.Dispose();
+                                baglanti.Close();
+                                /*SQL'A KAYDET */
+
+                                /////////****************************************************************************////////
+
+                                /*VERİTABANINA KAYDET */
+                                baglanti1.Open();
+                                OleDbCommand kayit1 = new OleDbCommand("insert into iso ([egitim_adi], [egitim_zamani],[zoom_id],[zoom_sifre],[zoom_link],[saat]) values (@egitim_adi, @egitim_zamani, @zoom_id, @zoom_sifre, @zoom_link, @saat)", baglanti1);
+                                kayit1.Parameters.AddWithValue("@egitim_adi", a);
+                                kayit1.Parameters.AddWithValue("@egitim_zamani", b);
+                                kayit1.Parameters.AddWithValue("@zoom_id", c);
+                                kayit1.Parameters.AddWithValue("@zoom_sifre", d);
+                                kayit1.Parameters.AddWithValue("@zoom_link", f);
+                                kayit1.Parameters.AddWithValue("@saat", g);
+                                kayit1.ExecuteNonQuery();
+                                MessageBox.Show("Yeni eğitim başarıyla eklendi!", "Access Veritabanı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                kayit1.Dispose();
+                                baglanti1.Close();
+                                /*VERİTABANINA KAYDET*/
+
+                                this.Close();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Lütfen birini seçiniz!!", "Veritabanı Seçiniz", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                        }
+                        catch (InvalidCastException ex)
+                        {
+                            MessageBox.Show(ex.Message, "ERROR12", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+
+                        Form1 f1 = (Form1)Application.OpenForms["Form1"];
+                        f1.tablo.Clear();
+                        f1.guncelle2();
                     }
                     else if (label6.Text == "AKBANK Akademi")
                     {
+                        try
+                        {
+                            if (sqlsecili.Checked == true)
+                            {
+                                baglanti2.Open();
+                                SqlCommand tekrar = new SqlCommand("select count(*) from akbank where egitim_adi='" + a + "'", baglanti2);
+                                int sonuc = (int)tekrar.ExecuteScalar();
+                                if (sonuc == 0)
+                                {
+                                    /*SQL'A KAYDET */
+                                    baglanti.Open();
+                                    SqlCommand kayit = new SqlCommand("insert into akbank ([egitim_adi], [egitim_zamani],[zoom_id],[zoom_sifre],[zoom_link],[saat],[katildi_mi]) values (@egitim_adi, @egitim_zamani, @zoom_id, @zoom_sifre, @zoom_link, @saat, @katildi_mi)", baglanti);
+                                    kayit.Parameters.AddWithValue("@egitim_adi", a);
+                                    kayit.Parameters.AddWithValue("@egitim_zamani", b);
+                                    kayit.Parameters.AddWithValue("@zoom_id", c);
+                                    kayit.Parameters.AddWithValue("@zoom_sifre", d);
+                                    kayit.Parameters.AddWithValue("@zoom_link", f);
+                                    kayit.Parameters.AddWithValue("@saat", g);
+                                    kayit.Parameters.AddWithValue("@katildi_mi", h);
+                                    kayit.ExecuteNonQuery();
+                                    MessageBox.Show("Yeni eğitim başarıyla eklendi!", "Eğitim Ekle", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    kayit.Dispose();
+                                    baglanti.Close();
+                                    /*SQL'A KAYDET */
+                                }
+                                if (sonuc > 0)
+                                {
+                                    MessageBox.Show("Zaten bu kayıt veritabanın da mevcut", "Veritabanı Kaydı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                }
+                                baglanti2.Close();
+                                this.Close();
+                            }
+                            else if (accesssecili.Checked == true)
+                            {
+                                /*VERİTABANINA KAYDET */
+                                baglanti1.Open();
+                                OleDbCommand kayit1 = new OleDbCommand("insert into akbank ([egitim_adi], [egitim_zamani],[zoom_id],[zoom_sifre],[zoom_link],[saat]) values (@egitim_adi, @egitim_zamani, @zoom_id, @zoom_sifre, @zoom_link, @saat)", baglanti1);
+                                kayit1.Parameters.AddWithValue("@egitim_adi", a);
+                                kayit1.Parameters.AddWithValue("@egitim_zamani", b);
+                                kayit1.Parameters.AddWithValue("@zoom_id", c);
+                                kayit1.Parameters.AddWithValue("@zoom_sifre", d);
+                                kayit1.Parameters.AddWithValue("@zoom_link", f);
+                                kayit1.Parameters.AddWithValue("@saat", g);
+                                kayit1.ExecuteNonQuery();
+                                MessageBox.Show("Yeni eğitim başarıyla eklendi!", "Access Veritabanı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                kayit1.Dispose();
+                                baglanti1.Close();
+                                /*VERİTABANINA KAYDET*/
 
+                                this.Close();
+                            }
+                            else if (hepsisecili.Checked == true)
+                            {
+
+                                /*SQL'A KAYDET */
+                                baglanti.Open();
+                                SqlCommand kayit = new SqlCommand("insert into akbank ([egitim_adi], [egitim_zamani],[zoom_id],[zoom_sifre],[zoom_link],[saat],[katildi_mi]) values (@egitim_adi, @egitim_zamani, @zoom_id, @zoom_sifre, @zoom_link, @saat, @katildi_mi)", baglanti);
+                                kayit.Parameters.AddWithValue("@egitim_adi", a);
+                                kayit.Parameters.AddWithValue("@egitim_zamani", b);
+                                kayit.Parameters.AddWithValue("@zoom_id", c);
+                                kayit.Parameters.AddWithValue("@zoom_sifre", d);
+                                kayit.Parameters.AddWithValue("@zoom_link", f);
+                                kayit.Parameters.AddWithValue("@saat", g);
+                                kayit.Parameters.AddWithValue("@katildi_mi", h);
+                                kayit.ExecuteNonQuery();
+                                MessageBox.Show("Yeni eğitim başarıyla eklendi!", "Eğitim Ekle", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                kayit.Dispose();
+                                baglanti.Close();
+                                /*SQL'A KAYDET */
+
+                                /////////****************************************************************************////////
+
+                                /*VERİTABANINA KAYDET */
+                                baglanti1.Open();
+                                OleDbCommand kayit1 = new OleDbCommand("insert into akbank ([egitim_adi], [egitim_zamani],[zoom_id],[zoom_sifre],[zoom_link],[saat]) values (@egitim_adi, @egitim_zamani, @zoom_id, @zoom_sifre, @zoom_link, @saat)", baglanti1);
+                                kayit1.Parameters.AddWithValue("@egitim_adi", a);
+                                kayit1.Parameters.AddWithValue("@egitim_zamani", b);
+                                kayit1.Parameters.AddWithValue("@zoom_id", c);
+                                kayit1.Parameters.AddWithValue("@zoom_sifre", d);
+                                kayit1.Parameters.AddWithValue("@zoom_link", f);
+                                kayit1.Parameters.AddWithValue("@saat", g);
+                                kayit1.ExecuteNonQuery();
+                                MessageBox.Show("Yeni eğitim başarıyla eklendi!", "Access Veritabanı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                kayit1.Dispose();
+                                baglanti1.Close();
+                                /*VERİTABANINA KAYDET*/
+
+                                this.Close();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Lütfen birini seçiniz!!", "Veritabanı Seçiniz", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                        }
+                        catch (InvalidCastException ex)
+                        {
+                            MessageBox.Show(ex.Message, "ERROR12", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+
+                        Form1 f1 = (Form1)Application.OpenForms["Form1"];
+                        f1.tablo.Clear();
+                        f1.guncelle3();
                     }
-                    else if (label6.Text == "İMMİB Akademi")
+                    else if (label6.Text == "Microfon")
                     {
+                        try
+                        {
+                            if (sqlsecili.Checked == true)
+                            {
+                                baglanti2.Open();
+                                SqlCommand tekrar = new SqlCommand("select count(*) from microfon where egitim_adi='" + a + "'", baglanti2);
+                                int sonuc = (int)tekrar.ExecuteScalar();
+                                if (sonuc == 0)
+                                {
+                                    /*SQL'A KAYDET */
+                                    baglanti.Open();
+                                    SqlCommand kayit = new SqlCommand("insert into microfon ([egitim_adi], [egitim_zamani],[zoom_id],[zoom_sifre],[zoom_link],[saat],[katildi_mi]) values (@egitim_adi, @egitim_zamani, @zoom_id, @zoom_sifre, @zoom_link, @saat, @katildi_mi)", baglanti);
+                                    kayit.Parameters.AddWithValue("@egitim_adi", a);
+                                    kayit.Parameters.AddWithValue("@egitim_zamani", b);
+                                    kayit.Parameters.AddWithValue("@zoom_id", c);
+                                    kayit.Parameters.AddWithValue("@zoom_sifre", d);
+                                    kayit.Parameters.AddWithValue("@zoom_link", f);
+                                    kayit.Parameters.AddWithValue("@saat", g);
+                                    kayit.Parameters.AddWithValue("@katildi_mi", h);
+                                    kayit.ExecuteNonQuery();
+                                    MessageBox.Show("Yeni eğitim başarıyla eklendi!", "Eğitim Ekle", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    kayit.Dispose();
+                                    baglanti.Close();
+                                    /*SQL'A KAYDET */
+                                }
+                                if (sonuc > 0)
+                                {
+                                    MessageBox.Show("Zaten bu kayıt veritabanın da mevcut", "Veritabanı Kaydı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                }
+                                baglanti2.Close();
+                                this.Close();
+                            }
+                            else if (accesssecili.Checked == true)
+                            {
+                                /*VERİTABANINA KAYDET */
+                                baglanti1.Open();
+                                OleDbCommand kayit1 = new OleDbCommand("insert into microfon ([egitim_adi], [egitim_zamani],[zoom_id],[zoom_sifre],[zoom_link],[saat]) values (@egitim_adi, @egitim_zamani, @zoom_id, @zoom_sifre, @zoom_link, @saat)", baglanti1);
+                                kayit1.Parameters.AddWithValue("@egitim_adi", a);
+                                kayit1.Parameters.AddWithValue("@egitim_zamani", b);
+                                kayit1.Parameters.AddWithValue("@zoom_id", c);
+                                kayit1.Parameters.AddWithValue("@zoom_sifre", d);
+                                kayit1.Parameters.AddWithValue("@zoom_link", f);
+                                kayit1.Parameters.AddWithValue("@saat", g);
+                                kayit1.ExecuteNonQuery();
+                                MessageBox.Show("Yeni eğitim başarıyla eklendi!", "Access Veritabanı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                kayit1.Dispose();
+                                baglanti1.Close();
+                                /*VERİTABANINA KAYDET*/
 
+                                this.Close();
+                            }
+                            else if (hepsisecili.Checked == true)
+                            {
+
+                                /*SQL'A KAYDET */
+                                baglanti.Open();
+                                SqlCommand kayit = new SqlCommand("insert into microfon ([egitim_adi], [egitim_zamani],[zoom_id],[zoom_sifre],[zoom_link],[saat],[katildi_mi]) values (@egitim_adi, @egitim_zamani, @zoom_id, @zoom_sifre, @zoom_link, @saat, @katildi_mi)", baglanti);
+                                kayit.Parameters.AddWithValue("@egitim_adi", a);
+                                kayit.Parameters.AddWithValue("@egitim_zamani", b);
+                                kayit.Parameters.AddWithValue("@zoom_id", c);
+                                kayit.Parameters.AddWithValue("@zoom_sifre", d);
+                                kayit.Parameters.AddWithValue("@zoom_link", f);
+                                kayit.Parameters.AddWithValue("@saat", g);
+                                kayit.Parameters.AddWithValue("@katildi_mi", h);
+                                kayit.ExecuteNonQuery();
+                                MessageBox.Show("Yeni eğitim başarıyla eklendi!", "Eğitim Ekle", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                kayit.Dispose();
+                                baglanti.Close();
+                                /*SQL'A KAYDET */
+
+                                /////////****************************************************************************////////
+
+                                /*VERİTABANINA KAYDET */
+                                baglanti1.Open();
+                                OleDbCommand kayit1 = new OleDbCommand("insert into microfon ([egitim_adi], [egitim_zamani],[zoom_id],[zoom_sifre],[zoom_link],[saat]) values (@egitim_adi, @egitim_zamani, @zoom_id, @zoom_sifre, @zoom_link, @saat)", baglanti1);
+                                kayit1.Parameters.AddWithValue("@egitim_adi", a);
+                                kayit1.Parameters.AddWithValue("@egitim_zamani", b);
+                                kayit1.Parameters.AddWithValue("@zoom_id", c);
+                                kayit1.Parameters.AddWithValue("@zoom_sifre", d);
+                                kayit1.Parameters.AddWithValue("@zoom_link", f);
+                                kayit1.Parameters.AddWithValue("@saat", g);
+                                kayit1.ExecuteNonQuery();
+                                MessageBox.Show("Yeni eğitim başarıyla eklendi!", "Access Veritabanı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                kayit1.Dispose();
+                                baglanti1.Close();
+                                /*VERİTABANINA KAYDET*/
+
+                                this.Close();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Lütfen birini seçiniz!!", "Veritabanı Seçiniz", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                        }
+                        catch (InvalidCastException ex)
+                        {
+                            MessageBox.Show(ex.Message, "ERROR12", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+
+                        Form1 f1 = (Form1)Application.OpenForms["Form1"];
+                        f1.tablo.Clear();
+                        f1.guncelle4();
                     }
-                    else if (label6.Text == "İMMİB Akademi")
+                    else if (label6.Text == "Solidworks")
                     {
+                        try
+                        {
+                            if (sqlsecili.Checked == true)
+                            {
+                                baglanti2.Open();
+                                SqlCommand tekrar = new SqlCommand("select count(*) from solidworks where egitim_adi='" + a + "'", baglanti2);
+                                int sonuc = (int)tekrar.ExecuteScalar();
+                                if (sonuc == 0)
+                                {
+                                    /*SQL'A KAYDET */
+                                    baglanti.Open();
+                                    SqlCommand kayit = new SqlCommand("insert into solidworks ([egitim_adi], [egitim_zamani],[zoom_id],[zoom_sifre],[zoom_link],[saat],[katildi_mi]) values (@egitim_adi, @egitim_zamani, @zoom_id, @zoom_sifre, @zoom_link, @saat, @katildi_mi)", baglanti);
+                                    kayit.Parameters.AddWithValue("@egitim_adi", a);
+                                    kayit.Parameters.AddWithValue("@egitim_zamani", b);
+                                    kayit.Parameters.AddWithValue("@zoom_id", c);
+                                    kayit.Parameters.AddWithValue("@zoom_sifre", d);
+                                    kayit.Parameters.AddWithValue("@zoom_link", f);
+                                    kayit.Parameters.AddWithValue("@saat", g);
+                                    kayit.Parameters.AddWithValue("@katildi_mi", h);
+                                    kayit.ExecuteNonQuery();
+                                    MessageBox.Show("Yeni eğitim başarıyla eklendi!", "Eğitim Ekle", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    kayit.Dispose();
+                                    baglanti.Close();
+                                    /*SQL'A KAYDET */
+                                }
+                                if (sonuc > 0)
+                                {
+                                    MessageBox.Show("Zaten bu kayıt veritabanın da mevcut", "Veritabanı Kaydı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                }
+                                baglanti2.Close();
+                                this.Close();
+                            }
+                            else if (accesssecili.Checked == true)
+                            {
+                                /*VERİTABANINA KAYDET */
+                                baglanti1.Open();
+                                OleDbCommand kayit1 = new OleDbCommand("insert into solidworks ([egitim_adi], [egitim_zamani],[zoom_id],[zoom_sifre],[zoom_link],[saat]) values (@egitim_adi, @egitim_zamani, @zoom_id, @zoom_sifre, @zoom_link, @saat)", baglanti1);
+                                kayit1.Parameters.AddWithValue("@egitim_adi", a);
+                                kayit1.Parameters.AddWithValue("@egitim_zamani", b);
+                                kayit1.Parameters.AddWithValue("@zoom_id", c);
+                                kayit1.Parameters.AddWithValue("@zoom_sifre", d);
+                                kayit1.Parameters.AddWithValue("@zoom_link", f);
+                                kayit1.Parameters.AddWithValue("@saat", g);
+                                kayit1.ExecuteNonQuery();
+                                MessageBox.Show("Yeni eğitim başarıyla eklendi!", "Access Veritabanı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                kayit1.Dispose();
+                                baglanti1.Close();
+                                /*VERİTABANINA KAYDET*/
 
+                                this.Close();
+                            }
+                            else if (hepsisecili.Checked == true)
+                            {
+
+                                /*SQL'A KAYDET */
+                                baglanti.Open();
+                                SqlCommand kayit = new SqlCommand("insert into solidworks ([egitim_adi], [egitim_zamani],[zoom_id],[zoom_sifre],[zoom_link],[saat],[katildi_mi]) values (@egitim_adi, @egitim_zamani, @zoom_id, @zoom_sifre, @zoom_link, @saat, @katildi_mi)", baglanti);
+                                kayit.Parameters.AddWithValue("@egitim_adi", a);
+                                kayit.Parameters.AddWithValue("@egitim_zamani", b);
+                                kayit.Parameters.AddWithValue("@zoom_id", c);
+                                kayit.Parameters.AddWithValue("@zoom_sifre", d);
+                                kayit.Parameters.AddWithValue("@zoom_link", f);
+                                kayit.Parameters.AddWithValue("@saat", g);
+                                kayit.Parameters.AddWithValue("@katildi_mi", h);
+                                kayit.ExecuteNonQuery();
+                                MessageBox.Show("Yeni eğitim başarıyla eklendi!", "Eğitim Ekle", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                kayit.Dispose();
+                                baglanti.Close();
+                                /*SQL'A KAYDET */
+
+                                /////////****************************************************************************////////
+
+                                /*VERİTABANINA KAYDET */
+                                baglanti1.Open();
+                                OleDbCommand kayit1 = new OleDbCommand("insert into solidworks ([egitim_adi], [egitim_zamani],[zoom_id],[zoom_sifre],[zoom_link],[saat]) values (@egitim_adi, @egitim_zamani, @zoom_id, @zoom_sifre, @zoom_link, @saat)", baglanti1);
+                                kayit1.Parameters.AddWithValue("@egitim_adi", a);
+                                kayit1.Parameters.AddWithValue("@egitim_zamani", b);
+                                kayit1.Parameters.AddWithValue("@zoom_id", c);
+                                kayit1.Parameters.AddWithValue("@zoom_sifre", d);
+                                kayit1.Parameters.AddWithValue("@zoom_link", f);
+                                kayit1.Parameters.AddWithValue("@saat", g);
+                                kayit1.ExecuteNonQuery();
+                                MessageBox.Show("Yeni eğitim başarıyla eklendi!", "Access Veritabanı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                kayit1.Dispose();
+                                baglanti1.Close();
+                                /*VERİTABANINA KAYDET*/
+
+                                this.Close();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Lütfen birini seçiniz!!", "Veritabanı Seçiniz", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                        }
+                        catch (InvalidCastException ex)
+                        {
+                            MessageBox.Show(ex.Message, "ERROR12", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+
+                        Form1 f1 = (Form1)Application.OpenForms["Form1"];
+                        f1.tablo.Clear();
+                        f1.guncelle5();
                     }
                 }
             }

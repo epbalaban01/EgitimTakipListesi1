@@ -71,11 +71,22 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="GirisYap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GirisYap.Designer.cs">
+      <DependentUpon>GirisYap.cs</DependentUpon>
+    </Compile>
     <Compile Include="Hakkinda.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Hakkinda.Designer.cs">
       <DependentUpon>Hakkinda.cs</DependentUpon>
+    </Compile>
+    <Compile Include="localAdminSettings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>localAdminSettings.settings</DependentUpon>
     </Compile>
     <Compile Include="MessageBoxManager.cs" />
     <Compile Include="Program.cs" />
@@ -86,11 +97,28 @@
     <Compile Include="SplashScreen.Designer.cs">
       <DependentUpon>SplashScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="SunucuAyarlari.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SunucuAyarlari.Designer.cs">
+      <DependentUpon>SunucuAyarlari.cs</DependentUpon>
+    </Compile>
+    <Compile Include="svsettings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>svsettings.settings</DependentUpon>
+    </Compile>
     <Compile Include="VeritabaniSec.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="VeritabaniSec.Designer.cs">
       <DependentUpon>VeritabaniSec.cs</DependentUpon>
+    </Compile>
+    <Compile Include="YoneticiDogrulama.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="YoneticiDogrulama.Designer.cs">
+      <DependentUpon>YoneticiDogrulama.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Ayarlar.resx">
       <DependentUpon>Ayarlar.cs</DependentUpon>
@@ -103,6 +131,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GirisYap.resx">
+      <DependentUpon>GirisYap.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Hakkinda.resx">
       <DependentUpon>Hakkinda.cs</DependentUpon>
@@ -120,10 +151,20 @@
     <EmbeddedResource Include="SplashScreen.resx">
       <DependentUpon>SplashScreen.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SunucuAyarlari.resx">
+      <DependentUpon>SunucuAyarlari.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VeritabaniSec.resx">
       <DependentUpon>VeritabaniSec.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="YoneticiDogrulama.resx">
+      <DependentUpon>YoneticiDogrulama.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Font\gilroy.otf" />
+    <None Include="localAdminSettings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>localAdminSettings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -134,6 +175,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="svsettings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>svsettings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
